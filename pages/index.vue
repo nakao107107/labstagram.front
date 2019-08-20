@@ -19,16 +19,11 @@ export default {
 
   async fetch({store}){
       await store.dispatch('post/init')
+      await store.dispatch('like/init')
   },
 
   computed: {
       ...mapGetters('post', ['posts'])
-  },
-
-  methods: {
-    async init(){
-      await this.$store.dispatch('post/init')
-    }
   }
 
 }
