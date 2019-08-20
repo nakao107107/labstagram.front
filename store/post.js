@@ -23,8 +23,15 @@ export const actions = {
     async init ({dispatch, commit}){
 
         const {headers, data, error} = await this.$resource().get(`/api/posts`)
+        console.log(data)
         commit('setPosts', data)
 
+    },
+
+    async create ({dispatch, commit}, payload){
+
+        const {headers, data, error} = await this.$resource().post(`/api/posts`, payload)
+
     }
-    
+
 }
