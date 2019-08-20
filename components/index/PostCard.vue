@@ -1,12 +1,11 @@
 <template>
     <div class="col-3 p-1">
         <div class="card">
-            {{like_el({user_id: 2, post_id: post.id}).length == 0}}
             <p>{{post.user.name}}</p>
             <img :src="post.img_url">
             <p>{{post.caption}}</p>
             <button @click="like">{{like_el({user_id: 2, post_id: post.id}).length == 0 ? 'いいね！': 'いいね取り消し'}}</button>
-            <button>いいねしたuser</button>
+            <button @click="checkLikeUser(post.id)">いいねしたuser</button>
         </div>
     </div>
 </template>
@@ -31,6 +30,10 @@ export default {
             }
             await this.$store.dispatch('like/create', input)
             await this.$store.dispatch('like/init')
+        },
+
+        checkLikeUser(id){
+            this.$router.push(`/${id}/likes`)
         }
     }
     
