@@ -1,0 +1,27 @@
+<template>
+    <div>
+        <p>{{user.name}}</p>
+        <img v-for="post in user.posts" :key="post.id" :src="post.img_url"/>
+    </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+
+    async fetch({store}){
+
+        await store.dispatch('user/init', 2)
+
+    },
+
+    computed: {
+        ...mapGetters('user', ['user'])
+    }
+    
+}
+</script>
+
+<style scoped>
+</style>
