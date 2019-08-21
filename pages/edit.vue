@@ -8,7 +8,9 @@
             <label>画像url</label>
             <input v-model="input.img_url"/>
         </div>
+        <input type="file" @change="onUploadFile">
         <button @click="post">投稿</button>
+        {{input}}
     </div>
 </template>
 
@@ -17,14 +19,24 @@ export default {
 
     data(){
         return {
-            input: {}
+            input: {
+                file: ''
+            },
         }
     },
 
     methods: {
         async post(){
-            await this.$store.dispatch('post/create', this.input)
+            let formData = new FormData
+            formData.append('caption', this.input.caption)
+            formData.append('img_url', this.input.img_url)
+            formData.append('file', this.input.file[0])
+            await this.$store.dispatch('post/create', formData)
             this.$router.push('/')
+        },
+
+        onUploadFile(event){
+            this.input.file = event.target.files
         }
     },
     
