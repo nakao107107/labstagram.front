@@ -25,8 +25,7 @@ export default {
         async like(){
 
             let input = {
-                'post_id': this.post.id,
-                'user_id': 2
+                'post_id': this.post.id
             }
             await this.$store.dispatch('like/create', input)
             await this.$store.dispatch('like/init')

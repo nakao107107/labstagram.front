@@ -1,5 +1,6 @@
 <template>
     <div>
+        <img :src="`https://github.com/${user.github_id}.png`">
         <p>{{user.name}}</p>
         <img v-for="post in user.posts" :key="post.id" :src="post.img_url"/>
     </div>
@@ -12,7 +13,7 @@ export default {
 
     async fetch({store}){
 
-        await store.dispatch('user/init', 2)
+        await store.dispatch('user/init')
 
     },
 

@@ -8,7 +8,6 @@
             <label>画像url</label>
             <input v-model="input.img_url"/>
         </div>
-        {{input}}
         <button @click="post">投稿</button>
     </div>
 </template>
@@ -20,11 +19,6 @@ export default {
         return {
             input: {}
         }
-    },
-
-    created(){
-        //input項目初期化
-        this.input.user_id = 1
     },
 
     methods: {
