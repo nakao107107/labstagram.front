@@ -45,8 +45,14 @@ class Resource {
 
     async request(options){
 
-        //ReCOREではX-Api-Keyは環境変数ではないが、理由がわかるまではとりあえず環境変数としてやる
-        const response = await this._axios(options).catch( err => err.response )
+        const token = await this._ctx.store.dispatch('auth/getToken')
+
+        const response = await this._axios(Object.assign({
+            headers: {
+                'Authorization': token
+            }
+        }, options))
+        .catch((err) => err.response)
         return this._responseBuilder(response)
     }
 }
