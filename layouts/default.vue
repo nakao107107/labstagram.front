@@ -14,11 +14,11 @@
         <li class="nav-item">
           <a class="nav-link" href="/edit">投稿</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/login">ログイン</a>
+        <li class="nav-item" v-if="token">
+          <a class="nav-link" href="#" @click="logout">ログアウト</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">ログアウト</a>
+        <li class="nav-item" v-else>
+          <a class="nav-link" href="/auth/login">ログイン</a>
         </li>
       </ul>
     </div>
@@ -26,6 +26,22 @@
     <nuxt />
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    token(){
+      return this.$cookies.get('token')
+    }
+  },
+  methods: {
+    logout(){
+      this.$store.dispatch('auth/logout')
+      this.$router.push('/auth/login')
+    }
+  }
+}
+</script>
 
 <style>
 </style>
