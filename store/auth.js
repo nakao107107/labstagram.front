@@ -1,6 +1,7 @@
 export const state = () => ({
 
     redirect_url: [],
+    cookies: {}
     
 })
 
@@ -26,6 +27,12 @@ export const actions = {
 
         const {headers, data, error} = await this.$resource().get(`/oauth/login/redirect`)
         commit('setRedirectUrl', data)
+
+    },
+
+    async logout ({commit}){
+
+        commit('removeToken')
 
     },
 
