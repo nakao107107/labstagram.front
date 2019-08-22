@@ -2,7 +2,7 @@
     <div class="col-3 p-1">
         <div class="card">
             <p>{{post.user.name}}</p>
-            <img :src="post.img_url" alt="投稿画像">
+            <img :src="post.img_url" alt="投稿画像" class="clip-img">
             <p>{{post.caption}}</p>
             <button @click="like" :disabled="! current_user.id">
                 {{like_user_post({user_id: current_user.id, post_id: post.id}).length == 0 ? 'いいね！': 'いいね取り消し'}}
@@ -74,3 +74,13 @@ export default {
     
 }
 </script>
+
+<style scoped>
+
+.clip-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover
+}
+
+</style>

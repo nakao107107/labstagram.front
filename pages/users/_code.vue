@@ -2,7 +2,9 @@
     <div>
         <img :src="`https://github.com/${user.github_id}.png`">
         <p>{{user.name}}</p>
-        <img v-for="post in user.posts" :key="post.id" :src="post.img_url"/>
+        <div class="row">
+            <img v-for="post in user.posts" :key="post.id" :src="post.img_url" class="clip-img col-3"/>
+        </div>
     </div>
 </template>
 
@@ -36,4 +38,11 @@ export default {
 </script>
 
 <style scoped>
+
+.clip-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover
+}
+
 </style>
