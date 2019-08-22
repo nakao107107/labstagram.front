@@ -10,7 +10,7 @@ export default {
     async fetch({store, route, redirect}){
 
         await store.dispatch('auth/callback', route.query)
-        redirect('/')
+        return redirect('/')
     }
     
 }

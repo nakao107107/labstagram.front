@@ -13,10 +13,16 @@ export const mutations = {
 
     setToken(state, payload) {
         this.$cookies.set("token", payload, {path: '/'})
+        state.cookies = this.$cookies.getAll()
+    },
+
+    setCookies(state, payload){
+        state.cookies = payload
     },
 
     removeToken(state, payload) {
         this.$cookies.remove("token", {path: '/'})
+        state.cookies = this.$cookies.getAll()
     }
 
 }
@@ -43,9 +49,14 @@ export const actions = {
 
     },
 
+    syncCookies({commit}){
+        let cookies = this.$cookies.getAll()
+        commit('setCookies', cookies)
+    },
+
     //getterでのcookieの使い方がよーわからんのでやむなし妥協
     getToken(){
-        return this.$cookies.getAll().token || ''
+        return this.$cookies.get('token') || ''
     }
 
 }

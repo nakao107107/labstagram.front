@@ -4,7 +4,9 @@
             <p>{{post.user.name}}</p>
             <img :src="post.img_url">
             <p>{{post.caption}}</p>
-            <button @click="like">{{like_el({user_id: 2, post_id: post.id}).length == 0 ? 'いいね！': 'いいね取り消し'}}</button>
+            <button @click="like" :disabled="! current_user.id">
+                {{like_el({user_id: current_user.id, post_id: post.id}).length == 0 ? 'いいね！': 'いいね取り消し'}}
+            </button>
             <button @click="checkLikeUser(post.id)" class="btn btn-success">いいねしたuser</button>
             <button @click="deletePost(post.id)" class="btn btn-danger" v-if="current_user.id == post.user.id">投稿の削除</button>
         </div>

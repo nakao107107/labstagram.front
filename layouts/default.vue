@@ -15,7 +15,7 @@
           <a class="nav-link" href="/edit">投稿</a>
         </li>
         <li class="nav-item" v-if="token">
-          <a class="nav-link" href="#" @click="logout">ログアウト</a>
+          <a class="nav-link" @click="logout">ログアウト</a>
         </li>
         <li class="nav-item" v-else>
           <a class="nav-link" href="/auth/login">ログイン</a>
@@ -31,7 +31,7 @@
 export default {
   computed: {
     token(){
-      return this.$cookies.get('token')
+      return this.$store.state.auth.cookies.token
     }
   },
   methods: {

@@ -20,6 +20,13 @@
 <script>
 export default {
 
+    fetch({store, redirect}){
+        //ログアウト状態であればログインページにredirect
+        if(! store.state.user.current_user.id){
+            return redirect('/auth/login')
+        }
+    },
+
     data(){
         return {
             input: {

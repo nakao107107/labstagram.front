@@ -15,7 +15,7 @@ export default {
 
     async fetch({store, redirect}){
         await store.dispatch('auth/login')
-        redirect(store.state.auth.redirect_url)
+        return redirect(store.state.auth.redirect_url)
     }
 
 }
