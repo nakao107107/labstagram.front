@@ -18,6 +18,7 @@ export default {
   },
 
   async fetch({store}){
+      await store.dispatch('user/initCurrent')
       await store.dispatch('post/init')
       await store.dispatch('like/init')
   },

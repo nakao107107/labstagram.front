@@ -6,7 +6,7 @@
             <p>{{post.caption}}</p>
             <button @click="like">{{like_el({user_id: 2, post_id: post.id}).length == 0 ? 'いいね！': 'いいね取り消し'}}</button>
             <button @click="checkLikeUser(post.id)" class="btn btn-success">いいねしたuser</button>
-            <button @click="deletePost(post.id)" class="btn btn-danger">投稿の削除</button>
+            <button @click="deletePost(post.id)" class="btn btn-danger" v-if="current_user.id == post.user.id">投稿の削除</button>
         </div>
     </div>
 </template>
@@ -19,7 +19,8 @@ export default {
     props: ["post"],
 
     computed: {
-      ...mapGetters('like', ['likes', 'like_el'])
+      ...mapGetters('like', ['likes', 'like_el']),
+      ...mapGetters('user', ['current_user'])
     },
 
     methods: {
