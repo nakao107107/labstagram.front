@@ -30,8 +30,13 @@ export const actions = {
     async create ({dispatch, commit}, payload){
 
         const {headers, data, error} = await this.$resource().post(`/api/posts`, payload)
-        console.log(data)
 
-    }
+    },
+
+    async delete ({dispatch, commit}, post_id){
+
+        const {headers, data, error} = await this.$resource().delete(`/api/posts/${post_id}`)
+
+    },
 
 }

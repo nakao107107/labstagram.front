@@ -6,6 +6,7 @@
             <p>{{post.caption}}</p>
             <button @click="like">{{like_el({user_id: 2, post_id: post.id}).length == 0 ? 'いいね！': 'いいね取り消し'}}</button>
             <button @click="checkLikeUser(post.id)" class="btn btn-success">いいねしたuser</button>
+            <button @click="deletePost(post.id)" class="btn btn-danger">投稿の削除</button>
         </div>
     </div>
 </template>
@@ -33,6 +34,11 @@ export default {
 
         checkLikeUser(id){
             this.$router.push(`/${id}/likes`)
+        },
+
+        async deletePost(post_id){
+            await this.$store.dispatch('post/delete', post_id)
+            await this.$store.dispatch('post/init')
         }
     }
     
