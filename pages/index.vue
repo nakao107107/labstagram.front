@@ -19,6 +19,8 @@ export default {
 
   async fetch({store, error}){
 
+    console.log("aa")
+
     try{
 
       await store.dispatch('user/initCurrent')
