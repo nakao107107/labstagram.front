@@ -12,8 +12,19 @@ import { mapGetters } from 'vuex'
 export default {
 
     async fetch({route, store}){
+
+        try {
+
+            await store.dispatch('user/init', route.params.code)
+
+        }catch(e){
+
+            //初期化エラー処理
+            error({ statusCode: 500 })
+
+        }
         
-        await store.dispatch('user/init', route.params.code)
+        
 
     },
 

@@ -32,6 +32,11 @@ export const actions = {
     async login ({commit}){
 
         const {headers, data, error} = await this.$resource().get(`/oauth/login/redirect`)
+
+        if(error) {
+            throw new Error()
+        }
+
         commit('setRedirectUrl', data)
 
     },
@@ -45,6 +50,11 @@ export const actions = {
     async callback({commit}, query){
 
         const {headers, data, error} = await this.$resource().get(`/oauth/login/callback`, query)
+
+        if(error) {
+            throw new Error()
+        }
+        
         commit('setToken', data)
 
     },

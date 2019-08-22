@@ -17,10 +17,20 @@ export default {
     PostCard
   },
 
-  async fetch({store}){
+  async fetch({store, error}){
+
+    try{
+
       await store.dispatch('user/initCurrent')
       await store.dispatch('post/init')
       await store.dispatch('like/init')
+
+    }catch(e){
+
+      //初期化エラー処理
+      error({ statusCode: 500 })
+
+    }
   },
 
   computed: {

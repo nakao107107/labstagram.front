@@ -7,8 +7,16 @@ export const state = () => ({
 export const getters = {
 
     likes : (state) => state.likes,
-    like_el  : (state) => (conditions) => {
+
+    like_post  : (state) => (conditions) => {
         return state.likes.filter(like => like.post_id === conditions.post_id)
+    },
+
+    like_user_post  : (state) => (conditions) => {
+
+        return state.likes.filter(like => like.post_id === conditions.post_id)
+        .filter(like => like.user_id === conditions.user_id)
+        
     }
 
 }
@@ -23,9 +31,14 @@ export const mutations = {
 
 export const actions = {
 
-    async init ({dispatch, commit}){
+    async init ({commit}){
 
         const {headers, data, error} = await this.$resource().get(`/api/likes`)
+
+        if(error) {
+            throw new Error()
+        }
+        
         commit('setLikes', data)
 
     },
@@ -33,6 +46,10 @@ export const actions = {
     async create ({dispatch, commit}, payload){
 
         const {headers, data, error} = await this.$resource().post(`/api/likes`, payload)
+
+        if(error) {
+            throw new Error()
+        }
 
     }
 }

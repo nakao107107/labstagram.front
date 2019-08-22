@@ -30,6 +30,11 @@ export const actions = {
     async init ({dispatch, commit}, id){
 
         const {headers, data, error} = await this.$resource().get(`/api/users/${id}`)
+
+        if(error) {
+            throw new Error()
+        }
+
         commit('setUser', data)
 
 
@@ -39,15 +44,9 @@ export const actions = {
 
         const {headers, data, error} = await this.$resource().get(`/api/user`)
         //ここは取れない可能性があるので、エラーハンドリングの際は注意
+
         commit('setCurrentUser', data)
 
-    },
-
-
-
-    async create ({dispatch, commit}, payload){
-
-        const {headers, data, error} = await this.$resource().post(`/api/likes`, payload)
-
     }
+    
 }

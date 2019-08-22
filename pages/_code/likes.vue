@@ -1,6 +1,6 @@
 <template>
     <div>
-    <user-card v-for="like in like_el({user_id: 2, post_id: id})" :key="like.id" :like="like"/>
+        <user-card v-for="like in like_post({post_id: id})" :key="like.id" :like="like"/>
     </div>
 </template>
 
@@ -9,6 +9,21 @@ import { mapGetters } from 'vuex'
 import UserCard from '~/components/like/UserCard.vue'
 
 export default {
+
+    async fetch({store, error}){
+
+        try{
+
+            await store.dispatch('like/init')
+
+        }catch(e){
+
+            //初期化エラー処理
+            error({ statusCode: 500 })
+
+        }
+
+    },
 
     data(){
         return {
@@ -25,7 +40,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters('like', ['like_el'])
+        ...mapGetters('like', ['like_post'])
     },
 
     

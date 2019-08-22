@@ -31,6 +31,7 @@ export default {
   */
   plugins: [
     '~plugins/resource.js',
+    '~plugins/vue-plugin.client.js',
   ],
   /*
   ** Nuxt.js dev-modules
