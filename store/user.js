@@ -20,11 +20,11 @@ export const mutations = {
 
 export const actions = {
 
-    async init ({dispatch, commit}){
+    async init ({dispatch, commit}, id){
 
-        const {headers, data, error} = await this.$resource().get(`/api/user`)
-        console.log(data)
+        const {headers, data, error} = await this.$resource().get(`/api/users/${id}`)
         commit('setUser', data)
+
 
     },
 

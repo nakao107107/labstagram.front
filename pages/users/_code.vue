@@ -11,9 +11,9 @@ import { mapGetters } from 'vuex'
 
 export default {
 
-    async fetch({store}){
-
-        await store.dispatch('user/init')
+    async fetch({route, store}){
+        
+        await store.dispatch('user/init', route.params.code)
 
     },
 

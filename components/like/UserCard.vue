@@ -1,7 +1,9 @@
 <template>
-    <div class=card>
-        <img :src="`https://github.com/${like.user.github_id}.png`">
-        <p>{{like.user.name}}</p>
+    <div class="card" @click="goUserPage">
+        <div class="row">
+            <img :src="`https://github.com/${like.user.github_id}.png`" class="col-2">
+            <p class="col-10">{{like.user.name}}</p>
+        </div>
     </div>
 </template>
 
@@ -10,7 +12,13 @@ export default {
     
     props: [
         "like"
-    ]
+    ],
+
+    methods: {
+        goUserPage(){
+            this.$router.push(`/users/${this.like.user.id}`)
+        }
+    }
 }
 </script>
 
