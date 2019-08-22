@@ -4,11 +4,14 @@
             <label>キャプション</label>
             <input v-model="input.caption"/>
         </div>
-        <div class="form-group">
-            <label>画像url</label>
-            <input v-model="input.img_url"/>
+        <div class="form_group">
+            <input type="file" @change="onUploadFile">
+            <div v-if="input.img_url">
+                <p>プレビュー</p>
+                <img :src="input.img_url">
+            </div>
         </div>
-        <input type="file" @change="onUploadFile">
+
         <button @click="post">投稿</button>
         {{input}}
     </div>
@@ -20,23 +23,28 @@ export default {
     data(){
         return {
             input: {
-                file: ''
+                caption: '',
+                img_url: ''
             },
         }
     },
 
     methods: {
         async post(){
-            let formData = new FormData
-            formData.append('caption', this.input.caption)
-            formData.append('img_url', this.input.img_url)
-            formData.append('file', this.input.file[0])
-            await this.$store.dispatch('post/create', formData)
+            await this.$store.dispatch('post/create', this.input)
             this.$router.push('/')
         },
 
-        onUploadFile(event){
-            this.input.file = event.target.files
+        onUploadFile(e) {
+            let files = e.target.files || e.dataTransfer.files;
+
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                this.input.img_url = e.target.result;
+            };
+            reader.readAsDataURL(files[0]);
+
+
         }
     },
     
