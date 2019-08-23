@@ -1,5 +1,5 @@
 <template>
-    <li @click="goUserPage">
+    <li @click="goUserPage" class="mb-2">
         <div class="d-flex align-items-center">
             <img :src="`https://github.com/${like.user.github_id}.png`" class="rounded-circle p-0 mr-2" width="50">
             <h4 class="col-10 m-0">{{like.user.name}}</h4>

@@ -6,7 +6,7 @@
                     <img :src="`https://github.com/${post.user.github_id}.png`" class="rounded-circle mr-2" width="30rem">
                     <h6 class="text-uppercase">{{post.user.name}}</h6>
                 </div>
-                <button @click="deletePost(post.id)" class="btn btn-icon btn-round btn-danger">
+                <button @click="deletePost(post.id)" class="btn btn-icon btn-round btn-danger" v-if="post.user.id == current_user.id">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
