@@ -1,6 +1,9 @@
 <template>
-    <div>
-        <user-card v-for="like in like_post({post_id: id})" :key="like.id" :like="like"/>
+    <div class="container">
+        <h4 class="font-weight-bold">Likes</h4>
+        <ul>
+            <user-card v-for="like in like_post({post_id: id})" :key="like.id" :like="like"/>
+        </ul>
     </div>
 </template>
 

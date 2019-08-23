@@ -1,9 +1,11 @@
 <template>
-    <div>
-        <img :src="`https://github.com/${user.github_id}.png`">
-        <p>{{user.name}}</p>
+    <div class="container">
+        <div class="row d-flex align-items-center mb-4 p-2">
+            <img :src="`https://github.com/${user.github_id}.png`" class="rounded-circle mr-3" width="15%">
+            <h3 class="mb-0">{{user.name}}</h3>
+        </div>
         <div class="row">
-            <img v-for="post in user.posts" :key="post.id" :src="post.img_url" class="clip-img col-3"/>
+            <img v-for="post in user.posts" :key="post.id" :src="post.img_url" class="clip-img col-4 p-1 rounded"/>
         </div>
     </div>
 </template>
@@ -41,8 +43,8 @@ export default {
 
 .clip-img {
     width: 100%;
-    height: 200px;
-    object-fit: cover
+    height: 20rem;
+    object-fit: cover;
 }
 
 </style>

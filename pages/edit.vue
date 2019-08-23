@@ -1,18 +1,19 @@
 <template>
     <div class="container">
-        <div class="form-group">
-            <label>キャプション</label>
-            <input v-model="input.caption"/>
+        <div class="mb-4">
+            <label class="mb-2">Caption</label>
+            <input v-model="input.caption" class="form-control" placehoder="キャプションを書く..."/>
         </div>
-        <div class="form_group">
-            <input type="file" id="file" @change="onUploadFile">
-            <div v-if="input.img_url">
-                <p>プレビュー</p>
-                <img :src="input.img_url">
-            </div>
+        <div class="mb-4">
+            <label class="mb-2">Image</label> 
+            <input type="file" class="form-control" id="file" @change="onUploadFile">
+        </div>
+        <div v-if="input.img_url" class="form-group">
+            <label class="mb-2 d-block">Preview</label>
+            <img :src="input.img_url">
         </div>
 
-        <button @click="post" :disabled="state.is_loading">投稿</button>
+        <button class="btn btn-primary" @click="post" :disabled="state.is_loading">Submit</button>
     </div>
 </template>
 
@@ -47,6 +48,14 @@ export default {
             try {
 
                 await this.$store.dispatch('post/create', this.input)
+                
+                //投稿成功処理
+                this.$notify({
+                    type : "success",
+                    title: '投稿完了',
+                    text : '新規投稿が完了しました！'
+                });
+
                 this.$router.push('/')
 
             }catch(e){

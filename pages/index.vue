@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1>投稿一覧</h1>
     <div class="row">
       <post-card v-for="post in posts" :key="post.id" :post="post"/>
     </div>
@@ -30,6 +29,12 @@ export default {
       //初期化エラー処理
       error({ statusCode: 500 })
 
+    }
+  },
+
+  methods: {
+    hideModal() {
+      this.$refs['post-menu-modal'].hide()
     }
   },
 

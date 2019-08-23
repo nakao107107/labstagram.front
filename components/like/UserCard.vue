@@ -1,10 +1,10 @@
 <template>
-    <div class="card" @click="goUserPage">
-        <div class="row">
-            <img :src="`https://github.com/${like.user.github_id}.png`" class="col-2">
-            <p class="col-10">{{like.user.name}}</p>
+    <li @click="goUserPage">
+        <div class="d-flex align-items-center">
+            <img :src="`https://github.com/${like.user.github_id}.png`" class="rounded-circle p-0 mr-2" width="50">
+            <h4 class="col-10 m-0">{{like.user.name}}</h4>
         </div>
-    </div>
+    </li>
 </template>
 
 <script>

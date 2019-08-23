@@ -26,6 +26,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/css/reset.css',
     '~/assets/css/now-ui-kit.css'
   ],
   /*
