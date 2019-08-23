@@ -3,6 +3,14 @@
     <div class="row">
       <post-card v-for="post in posts" :key="post.id" :post="post"/>
     </div>
+    <b-pagination
+            align="center"
+            :value="pager.page"
+            :total-rows="pager.total"
+            :per-page="pager.limit"
+            @change="changePage"
+            class="mt-4 mb-4"
+    ></b-pagination>
   </div>
 </template>
 
@@ -33,13 +41,17 @@ export default {
   },
 
   methods: {
-    hideModal() {
-      this.$refs['post-menu-modal'].hide()
-    }
+    /*
+    ページ変更
+    */
+    async changePage(page)
+    {
+        await this.$store.dispatch('post/changePage', page)
+    },
   },
 
   computed: {
-      ...mapGetters('post', ['posts'])
+      ...mapGetters('post', ['posts', 'pager'])
   }
 
 }
