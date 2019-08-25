@@ -47,6 +47,8 @@ export const actions = {
 
         const {headers, data, error} = await this.$resource().post(`/api/likes`, payload)
 
+        console.log(data)
+
         if(error) {
             throw new Error()
         }

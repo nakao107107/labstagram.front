@@ -14,8 +14,9 @@
             <div class="p-3">
                 <p class="mb-3 text-dark">{{post.caption}}</p>
                 <div class="d-flex justify-content-between">
-                    <a @click="like" :disabled="! current_user.id">
-                        <i class="far fa-heart text-danger" v-if="like_user_post({user_id: current_user.id, post_id: post.id}).length == 0"></i>
+                    <a @click="like">
+                        <i class="far fa-heart text-muted" v-if="! current_user.id"></i>
+                        <i class="far fa-heart text-danger" v-else-if="like_user_post({user_id: current_user.id, post_id: post.id}).length == 0"></i>
                         <i class="fas fa-heart text-danger" v-else></i>
                     </a>
                     <a @click="checkLikeUser(post.id)"><i class="far fa-user"></i></a>
@@ -39,6 +40,11 @@ export default {
 
     methods: {
         async like(){
+
+            //未ログイン時はdisable
+            if(! this.current_user.id){
+                return
+            }
 
             try {
                 let input = {
