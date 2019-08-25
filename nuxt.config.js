@@ -1,5 +1,7 @@
 require('dotenv').config();
-const {API_URL} = process.env;
+const webpack = require('webpack')
+
+const {API_URL, GOOGLE_API_URL, GOOGLE_API_KEY} = process.env;
 
 export default {
   mode: 'universal',
@@ -66,10 +68,18 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
+
+    plugins: [
+      new webpack.ProvidePlugin({
+        '_': 'lodash'
+      })
+    ]
   },
 
   env: {
-    API_URL
+    API_URL,
+    GOOGLE_API_URL,
+    GOOGLE_API_KEY
   }
 }

@@ -97,6 +97,35 @@ export const actions = {
 
     },
 
+    async getTags({dispatch}, img){
+
+        const params = {
+            requests: [
+                {
+                    image: {
+                        content: img.split(',')[1]
+                    },
+
+                    features: [
+                        {
+                            type:       "LABEL_DETECTION",
+                            maxResults: 5
+                        }
+                    ]
+                }
+            ]
+        }
+
+        const {headers, data, error} = await this.$resource(process.env.GOOGLE_API_URL)
+                                                 .post(`/v1/images:annotate?key=${process.env.GOOGLE_API_KEY}`, params)
+
+        if(error) {
+            throw new Error()
+        }
+
+        return data.responses[0].labelAnnotations[1].description
+    },
+
     async delete ({dispatch, commit}, post_id){
 
         const {headers, data, error} = await this.$resource(process.env.API_URL).delete(`/api/posts/${post_id}`)

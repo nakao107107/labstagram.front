@@ -34,8 +34,6 @@ export default {
                 img_url: '',
                 
                 tags:    [
-                    {'name': 'aa'},
-                    {'name': 'bb'}
                 ] 
             },
             
@@ -52,6 +50,14 @@ export default {
 
             try {
 
+                //Tag自動取得
+                const tag_name = await this.$store.dispatch('post/getTags', this.input.img_url)
+
+                this.input.tags.push({
+                 name: tag_name   
+                })
+
+                //投稿作成
                 await this.$store.dispatch('post/create', this.input)
                 
                 //投稿成功処理
