@@ -60,7 +60,7 @@ export const actions = {
 
     async search({commit}, query){
 
-        const {headers, data, error} = await this.$resource().get(`/api/posts`, query)
+        const {headers, data, error} = await this.$resource(process.env.API_URL).get(`/api/posts`, query)
 
         if(error) {
             throw new Error()
@@ -89,7 +89,7 @@ export const actions = {
 
     async create ({dispatch, commit}, payload){
 
-        const {headers, data, error} = await this.$resource().post(`/api/posts`, payload)
+        const {headers, data, error} = await this.$resource(process.env.API_URL).post(`/api/posts`, payload)
 
         if(error) {
             throw new Error()
@@ -99,7 +99,7 @@ export const actions = {
 
     async delete ({dispatch, commit}, post_id){
 
-        const {headers, data, error} = await this.$resource().delete(`/api/posts/${post_id}`)
+        const {headers, data, error} = await this.$resource(process.env.API_URL).delete(`/api/posts/${post_id}`)
 
         if(error) {
             throw new Error()

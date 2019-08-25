@@ -81,11 +81,11 @@ class Response
 
 export default ( ctx, inject ) => {
 
-    inject('resource', () => {
+    inject('resource', (base_url) => {
 
         const client = axios.create({
 
-            baseURL: process.env.API_URL
+            baseURL: base_url
 
         })
 

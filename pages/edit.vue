@@ -31,7 +31,12 @@ export default {
         return {
             input: {
                 caption: '',
-                img_url: ''
+                img_url: '',
+                
+                tags:    [
+                    {'name': 'aa'},
+                    {'name': 'bb'}
+                ] 
             },
             
             state: {

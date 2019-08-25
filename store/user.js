@@ -29,7 +29,7 @@ export const actions = {
 
     async init ({dispatch, commit}, id){
 
-        const {headers, data, error} = await this.$resource().get(`/api/users/${id}`)
+        const {headers, data, error} = await this.$resource(process.env.API_URL).get(`/api/users/${id}`)
 
         if(error) {
             throw new Error()
@@ -42,7 +42,7 @@ export const actions = {
 
     async initCurrent ({dispatch, commit}, id){
 
-        const {headers, data, error} = await this.$resource().get(`/api/user`)
+        const {headers, data, error} = await this.$resource(process.env.API_URL).get(`/api/user`)
         //ここは取れない可能性があるので、エラーハンドリングの際は注意
 
         commit('setCurrentUser', data)

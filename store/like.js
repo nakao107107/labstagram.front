@@ -33,7 +33,7 @@ export const actions = {
 
     async init ({commit}){
 
-        const {headers, data, error} = await this.$resource().get(`/api/likes`)
+        const {headers, data, error} = await this.$resource(process.env.API_URL).get(`/api/likes`)
 
         if(error) {
             throw new Error()
@@ -45,7 +45,7 @@ export const actions = {
 
     async create ({dispatch, commit}, payload){
 
-        const {headers, data, error} = await this.$resource().post(`/api/likes`, payload)
+        const {headers, data, error} = await this.$resource(process.env.API_URL).post(`/api/likes`, payload)
 
         console.log(data)
 

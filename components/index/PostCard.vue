@@ -10,8 +10,11 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <img :src="post.img_url" alt="投稿画像" class="clip-img">
-            <div class="p-3">
+            <img :src="post.img_url" alt="投稿画像" class="clip-img mb-3">
+            <div class="container mb-3">
+                <span class="badge badge-default mb-0 mr-2" v-for="tag in post.tags" :key="tag.id">{{tag.name}}</span>
+            </div>
+            <div class="container mb-3">
                 <p class="mb-3 text-dark">{{post.caption}}</p>
                 <div class="d-flex justify-content-between">
                     <a @click="like">

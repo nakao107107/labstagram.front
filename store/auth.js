@@ -31,7 +31,7 @@ export const actions = {
 
     async login ({commit}){
 
-        const {headers, data, error} = await this.$resource().get(`/oauth/login/redirect`)
+        const {headers, data, error} = await this.$resource(process.env.API_URL).get(`/oauth/login/redirect`)
 
         if(error) {
             throw new Error()
@@ -49,7 +49,7 @@ export const actions = {
 
     async callback({commit}, query){
 
-        const {headers, data, error} = await this.$resource().get(`/oauth/login/callback`, query)
+        const {headers, data, error} = await this.$resource(process.env.API_URL).get(`/oauth/login/callback`, query)
 
         if(error) {
             throw new Error()
