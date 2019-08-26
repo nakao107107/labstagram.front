@@ -87,6 +87,8 @@ export default {
 
             let inputFile = document.getElementById('file');
             let file = e.target.files[0];
+
+            console.log(file.type)
             
             //画像の種類のvalidation
             if ( file.type !== 'image/jpeg' ) {

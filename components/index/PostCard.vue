@@ -12,7 +12,11 @@
             </div>
             <img :src="post.img_url" alt="投稿画像" class="clip-img mb-3">
             <div class="container mb-3">
-                <span class="badge badge-default mb-0 mr-2" v-for="tag in post.tags" :key="tag.id">{{tag.name}}</span>
+                <span class="badge badge-default mb-0 mr-2" 
+                v-for="tag in post.tags" 
+                :key="tag.id"
+                :class="isSatisfyConditon(tag.name) ? 'badge-primary' : 'badge-default'">
+                {{tag.name}}</span>
             </div>
             <div class="container mb-3">
                 <p class="mb-3 text-dark">{{post.caption}}</p>
@@ -101,6 +105,11 @@ export default {
 
         goUserPage(id){
             this.$router.push(`/users/${id}`)
+        },
+
+        isSatisfyConditon(str){
+            const condition = ['T', 'E', 'A', 'M', 'L', 'A', 'B']
+            return condition.indexOf(str.slice(0, 1))>= 0
         }
     }
     
