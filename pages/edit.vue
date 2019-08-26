@@ -71,6 +71,9 @@ export default {
 
             }catch(e){
 
+                //tagsをリセット
+                this.input.tags = []
+
                 //投稿失敗処理
                 this.$notify({
                     type : "error",
