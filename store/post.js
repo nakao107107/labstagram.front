@@ -136,4 +136,19 @@ export const actions = {
 
     },
 
+
+    async createTask ({dispatch, commit}, char){
+
+        const params = {
+            character: char
+        }
+
+        const {headers, data, error} = await this.$resource(process.env.API_URL).post('/api/tasks', params)
+
+        if(error) {
+            throw new Error()
+        }
+
+    },
+
 }

@@ -53,9 +53,18 @@ export default {
                 //Tag自動取得
                 const tag_name = await this.$store.dispatch('post/getTags', this.input.img_url)
 
+                const condition = ['T', 'E', 'A', 'M', 'L', 'A', 'B'] 
+
+                //tag nameが"TEAMLAB"始まりならtaskクリア
+                if(condition.indexOf(tag_name.slice(0, 1))>= 0){
+                    await this.$store.dispatch('post/createTask', tag_name.slice(0, 1))
+                }
+                
                 this.input.tags.push({
                  name: tag_name   
                 })
+
+                
 
                 //投稿作成
                 await this.$store.dispatch('post/create', this.input)
@@ -117,7 +126,6 @@ export default {
                 inputFile.value = ''
                 return
             }
-            10000000
 
             let reader = new FileReader();
             reader.onload = (e) => {
